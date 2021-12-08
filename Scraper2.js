@@ -5,7 +5,8 @@ async function BON(inputVal) {
    try {
        const URL = 'https://www.bonappetit.com/search'
        const browser = await puppeteer.launch({headless: true,
-        args: [`--window-size=1000,700`],
+        args: [`--window-size=1000,700`,'--no-sandbox',
+        '--disable-setuid-sandbox'],
        defaultViewport: {
          width:1000,
          height:700
@@ -50,7 +51,9 @@ async function BON(inputVal) {
 async function TASTY(inputVal) {
     try {
         const URL = 'https://tasty.co/'
-        const browser = await puppeteer.launch({headless: true,args: [`--window-size=1000,700`],
+        const browser = await puppeteer.launch({headless: true,
+            args: [`--window-size=1000,700`,'--no-sandbox',
+            '--disable-setuid-sandbox'],
         defaultViewport: {
           width:1000,
           height:700
@@ -98,7 +101,9 @@ async function TASTY(inputVal) {
 async function JAMIE(inputVal) {
     try {
         const URL = 'https://www.jamieoliver.com/'
-        const browser = await puppeteer.launch({headless: true,args: [`--window-size=1000,700`],
+        const browser = await puppeteer.launch({headless: true,
+            args: [`--window-size=1000,700`,'--no-sandbox',
+            '--disable-setuid-sandbox'],
         defaultViewport: {
           width:1000,
           height:700
@@ -145,7 +150,9 @@ async function JAMIE(inputVal) {
  async function BBC(inputVal) {
     try {
         const URL = 'https://www.bbc.co.uk/food'
-        const browser = await puppeteer.launch({headless: true,args: [`--window-size=1000,700`],
+        const browser = await puppeteer.launch({headless: true,
+            args: [`--window-size=1000,700`,'--no-sandbox',
+            '--disable-setuid-sandbox'],
         defaultViewport: {
           width:1000,
           height:700
@@ -195,7 +202,8 @@ async function JAMIE(inputVal) {
     try {
         const URL = 'https://www.bbcgoodfood.com/'
         const browser = await puppeteer.launch({headless: true,
-            args: [`--window-size=1000,700`],
+            args: [`--window-size=1000,700`,'--no-sandbox',
+            '--disable-setuid-sandbox'],
             defaultViewport: {
               width:1000,
               height:700
