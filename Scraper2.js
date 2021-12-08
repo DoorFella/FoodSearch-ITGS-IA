@@ -1,6 +1,6 @@
 const puppeteer = require('puppeteer')
 
-
+/*
 async function BON(inputVal) {
    try {
        const URL = 'https://www.bonappetit.com/search'
@@ -46,7 +46,7 @@ async function BON(inputVal) {
    }
    
 }
-
+*/
 
 async function TASTY(inputVal) {
     try {
@@ -261,7 +261,7 @@ async function JAMIE(inputVal) {
 //JAMIE('beans')
 
 module.exports = {
-    BON,
+   // BON,
     TASTY,
     JAMIE,
     BBC,

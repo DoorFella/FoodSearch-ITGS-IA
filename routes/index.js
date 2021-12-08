@@ -82,13 +82,13 @@ router.post('/results',[
 
           //perform foodScraper
       
-    list_BON = await foodScraper.BON(scraper_input);
+    //list_BON = await foodScraper.BON(scraper_input);
     list_TASTY = await foodScraper.TASTY(scraper_input);
     list_JAMIE = await foodScraper.JAMIE(scraper_input);
     list_BBC = await foodScraper.BBC(scraper_input);
     list_GOOD = await foodScraper.GOOD(scraper_input);
      
-    await res.render('results', {title: 'FoodSearch - Results', epi_list: list_BON, tasty_list: list_TASTY, jamie_list: list_JAMIE, bbc_list: list_BBC, good_list: list_GOOD, authorized: req.user});
+    await res.render('results', {title: 'FoodSearch - Results', /*epi_list: list_BON,*/ tasty_list: list_TASTY, jamie_list: list_JAMIE, bbc_list: list_BBC, good_list: list_GOOD, authorized: req.user});
   }
 });
 
