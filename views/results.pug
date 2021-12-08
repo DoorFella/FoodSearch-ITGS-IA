@@ -51,46 +51,8 @@ block content
             
     div( id="foodReveal")
         div(id="foodPresent")
-            if tasty_list.length != 0 || jamie_list.length != 0 || bbc_list.length != 0 || good_list.length != 0
+            if bbc_list.length != 0 || good_list.length != 0
                 
-                if tasty_list.length < 5
-                    -var loop = tasty_list.length 
-                else 
-                    - var loop = 4
-                -for (let index = 0; index < loop; index++) {
-                    div(class="food_input-group flexi-food")
-                        h3.recipeTitle=tasty_list[index].title  
-                        img(src=pics[randomInt()] alt="recipe")
-                        a(target="_blank" class="link_food" href=tasty_list[index].url)
-                            button(class="button_light") OG link
-                        //h4 Tasty
-                        //h4=index
-                        if authorized
-                            form(action="/users/save", method="POST") 
-                                input(type="url", name="url" class="food-hidden" value=tasty_list[index].url)
-                                input(type="text", name="title" class="food-hidden" value=tasty_list[index].title)
-                                input(type="text", name="img" class="food-hidden" value=pics[randomInt()])
-                                button(class="form_button") Save recipe
-                -}
-                if jamie_list.length < 5
-                    -var loop = jamie_list.length 
-                else 
-                    - var loop = 4
-                -for (let index = 0; index < loop; index++) {
-                    div(class="food_input-group flexi-food")
-                        h3.recipeTitle=jamie_list[index].title  
-                        img(src=pics[randomInt()] alt="recipe")
-                        a(target="_blank" class="link_food" href=jamie_list[index].url)
-                            button(class="button_light") OG link
-                        //h4 Jamie
-                        //h4=index
-                        if authorized
-                            form(action="/users/save", method="POST") 
-                                input(type="url", name="url" class="food-hidden" value=jamie_list[index].url)
-                                input(type="text", name="title" class="food-hidden" value=jamie_list[index].title)
-                                input(type="text", name="img" class="food-hidden" value=pics[randomInt()])
-                                button(class="form_button") Save recipe
-                -}
                 if bbc_list.length < 5
                     -var loop = bbc_list.length 
                 else 
