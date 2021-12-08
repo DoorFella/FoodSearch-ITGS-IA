@@ -1,0 +1,21 @@
+extends layout 
+
+block content 
+    div(class="section")
+      div(class="container")
+        form(action="/users/register" method='POST' id="register")
+                h1(class="form_title") Register
+                div(class="form_input-group")
+                    input(type="text" id="signupUsername" name='username' class="form_input" autofocus placeholder="Username" required value=(undefined===register ? '' : register.username))
+                
+                div(class="form_input-group")
+                    input(type="password" name='password' class="form_input" autofocus placeholder="Password" required value=(undefined===register ? '' : register.password))
+
+                
+                div(class="form_input-group")
+                    input(type="password" name='password_repeat' class="form_input" autofocus placeholder="Repeat password" required value=(undefined===register  ? '' : register.password_repeat))
+
+            
+        if error
+            ul
+                    li!= error.message  

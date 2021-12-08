@@ -1,0 +1,364 @@
+/*body {
+  padding: 50px;
+  font: 18px "Lucida Grande", Helvetica, Arial, sans-serif;
+}*/
+
+.loading {
+  display: none;
+}
+
+img {
+  max-width: 100%;
+  min-width: 100%;
+}
+
+a {
+  color: var(--color-primary-light);
+}
+body {
+  color: black;
+  margin: 0;
+  padding: 0;
+}
+
+.Navbar {
+  background-color: var(--color-secondary);
+  display: flex;
+  padding: 16px;
+  font-family: sans-serif;
+  color: white;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
+}
+
+.Navbar__Link {
+  padding-right: 8px;
+}
+
+.Navbar__Items {
+  display: flex;
+}
+
+.Navbar__Items--right {
+  margin-left:auto;
+}
+
+.Navbar__Link-toggle {
+  display: none;
+}
+
+@media only screen and (max-width: 768px) {
+  .Navbar__Items,
+  .Navbar {
+    flex-direction: column;
+  }
+    
+.Navbar__Items {
+    display:none;
+  }
+    
+.Navbar__Items--right {
+    margin-left:0;
+  }
+    
+.Navbar__ToggleShow {
+    display: flex;
+  }
+    
+.Navbar__Link-toggle {
+    align-self: flex-end;
+    display: initial;
+    position: absolute;
+    cursor: pointer;
+   } 
+}
+
+
+
+
+.navLink {
+  text-decoration: none;
+  color: white;
+  padding: 1rem 2rem;
+
+}
+
+.navLink:hover {
+background-color: #242424;
+}
+
+.navLink:active {
+background-color: var(--color-primary-dark);
+transform: scale(0.98);
+}
+
+
+
+
+/* testLogin.css stuff*/
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
+:root {
+  --color-primary: #6832a8;
+  --color-primary-dark: #522885;
+  --color-primary-light: #8b4ed4;
+  --color-secondary: #353535;
+  --color-error: #cc3333;
+  --color-success: #4bb544;
+  --border-radius: 8px;
+  font-size: 18px;
+  font-family: 'Montserrat', sans-serif;
+}
+body {
+  margin: 0;
+  min-height: 100vh;
+  
+}
+/*:not(.Navbar){
+display: flex;
+justify-content: center;
+align-items: center;
+}
+*/
+
+.instructions {
+  min-width: 300px;
+  max-width: 800px;
+  margin: 1rem;
+  padding: 2rem;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
+  border-radius: var(--border-radius);
+  background: white;
+}
+
+
+.section {
+  margin-top: 3rem;
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+}
+
+.container {
+
+  width: 400px;
+  max-width: 400px;
+  margin: 1rem;
+  padding: 2rem;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
+  border-radius: var(--border-radius);
+  background: white;
+}
+
+
+.food-hidden {
+  display: none;
+}
+
+.form > *:first-child {
+  margin-top: 0;
+}
+
+.form > *:last-child {
+  margin-bottom: 0;
+}
+
+.form_title {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.form_message {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+
+
+.form_message-error {
+  color: var(--color-error);
+}
+
+.form_input-group {
+  margin-bottom: 1rem;
+}
+
+.form_input, .food_input{
+  display: block;
+  width: 100%;
+  padding: 0.75rem;
+  box-sizing: border-box;
+  border-radius: var(--border-radius);
+  border: 1px solid #dddddd;
+  outline: none;
+  background: #eeeeee;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.form_input:focus,
+.food_input:focus {
+  border-color: var(--color-primary);
+  background: white;
+}
+
+.form_input-error {
+  color: var(--color-error);
+  border-color: var(--color-error);
+}
+
+.form_input-error-message {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--color-error);
+}
+
+.flexi-food {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: 300px;
+  max-width: 600px;
+}
+
+.link_food {
+  width: 100%;
+  padding: 1rem;
+}
+
+.button_light {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+  border-radius: var(--border-radius);
+  outline: none;
+  cursor: pointer;
+  background: white;
+}
+
+.button_light:hover {
+  background: var(--color-primary);
+  color: white;
+  transform: scale(1.01);
+}
+
+.form_button {
+  width: 100%;
+  padding: 1rem 2rem;
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: white;
+  border: none;
+  border-radius: var(--border-radius);
+  outline: none;
+  cursor: pointer;
+  background: var(--color-primary);
+}
+
+.form_button:hover {
+  background: var(--color-primary-dark);
+  transform: scale(1.01);
+}
+
+.form_button:active, .button_light:active {
+  transform: scale(0.98);
+}
+
+.form_text {
+  text-align: center;
+}
+
+.form_link {
+  color: var(--color-primary-light);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.form_link:hover {
+  text-decoration: underline;
+}
+
+
+/*FoodSearch selection*/
+#foodSelect,
+#foodPresent {
+  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+
+}
+
+#ingredient {
+  margin-top: 1rem;
+}
+
+.food_input-group {
+  flex: 1;
+  padding: 1rem;
+  margin: 0.5rem;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
+  border-radius: var(--border-radius);
+  background: white;
+  text-align: center;
+  min-width: 200px;
+
+}
+
+.inner_food {
+  margin-left: 2rem;
+  text-align: left;
+}
+
+#foodbut {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+
+body::-webkit-scrollbar {
+  width: 0.25rem
+}
+
+body::-webkit-scrollbar-track {
+  background: whitesmoke;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: #9261c7;
+}
+
+
+
+
+::selection {
+  color: whitesmoke;
+  background-color: #9261c7;
+
+}
+
+
+
+
+
+
+.column {
+  float: left;
+  width: 25%;
+}
+
+
+
+.row:after {
+  content: '';
+  display: table;
+  clear: both;
+
+}

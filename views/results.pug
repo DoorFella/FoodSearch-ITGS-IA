@@ -1,0 +1,159 @@
+extends index 
+
+block content 
+    -let pics = ['https://ichef.bbci.co.uk/food/ic/food_16x9_832/recipes/egg_fried_rice_05277_16x9.jpg', 'https://assets.bonappetit.com/photos/617c302c89a6f727d0729dfa/1:1/w_640,c_limit/20211026%20Rice%20Pilaf%20with%20Lemony%20Brown%20Butter%20Mushrooms.jpg' ,'https://ichef.bbci.co.uk/food/ic/food_16x9_1600/recipes/wild_boar_rag_with_fresh_39141_16x9.jpg','https://images.immediate.co.uk/production/volatile/sites/30/2020/08/chicken-sweetcorn-tacos-f01abbf.jpg?quality=90&resize=440,400' , 'https://assets.bonappetit.com/photos/6169b04e2f34dd3430e96df8/8:5/w_320,h_200,c_limit/Shrimp-and-Salami-Pasta.jpeg, https://assets.bonappetit.com/photos/6169b04e2f34dd3430e96df8/8:5/w_640,h_400,c_limit/Shrimp-and-Salami-Pasta.jpeg 2x', 'https://assets.bonappetit.com/photos/5cf6c457a50b78b17f30b5fd/8:5/w_320,h_200,c_limit/jammy-pepper-pasta-1.jpg, https://assets.bonappetit.com/photos/5cf6c457a50b78b17f30b5fd/8:5/w_640,h_400,c_limit/jammy-pepper-pasta-1.jpg 2x',];
+    - function randomInt() {return Math.floor(Math.random() * pics.length)};
+        
+    
+
+    div
+    form(action="/results" method="POST" id="foodSelect")
+      
+        div(class="food_input-group")
+            h3(class="food_heading") Diet
+            div(class="inner_food")
+                input(type="checkbox" class="food_checkbox" id="vegetarian" name="vegetarian" value=" vegetarian")
+                label(for="vegetarian") Vegetarian
+                br
+                input(type="checkbox" class="food_checkbox" id="vegan" name="vegan" value=" vegan")
+                label(for="vegan") Vegan
+                br
+                input(type="checkbox" class="food_checkbox" id="lactose" name="lactose" value=" lactose free")
+                label(for="lactose") Lactose free
+
+        div(class="food_input-group")
+            h3(class="food_heading") Main ingredients
+            input(type="text" class="food_input" id="ingredient" name='ingredient' autofocus placeholder="Search...")
+
+
+        div(class="food_input-group")
+            h3(class="food_heading") Cuisine
+            div(class="inner_food") 
+                input(type="radio" class="food_radio" id="italian" name="food_radio" value=" italian")
+                label(for="italian") Italian
+                br
+                input(type="radio" class="food_radio" id="asian" name="food_radio" value=" asian")
+                label(for="asian") Asian 
+                br
+                input(type="radio" class="food_radio" id="indian" name="food_radio" value=" indian")
+                label(for="indian") Indian 
+                br
+                input(type="radio" class="food_radio" id="mexican" name="food_radio" value=" mexican")
+                label(for="mexican") Mexican 
+                br
+                input(type="radio" class="food_radio" id="all_cuisine" name="food_radio" value="")
+                label(for="all_cuisine") Other/all cuisines 
+            
+      
+
+        div(class="food_input-group" id="foodbut")
+            button(class="form_button load_button" type="submit") View results
+            
+    div( id="foodReveal")
+        div(id="foodPresent")
+            if epi_list.length != 0 || tasty_list.length != 0 || jamie_list.length != 0 || bbc_list.length != 0 || good_list.length != 0
+                if epi_list.length < 5
+                    -var loop = epi_list.length 
+                else 
+                    - var loop = 4
+                -for (let index = 0; index < loop; index++) {
+                    div(class="food_input-group flexi-food")
+                        h3.recipeTitle=epi_list[index].title  
+                        img(src=pics[randomInt()] alt="recipe")
+                        a(target="_blank" class="link_food" href=epi_list[index].url)
+                            button(class="button_light") OG link
+                        //h4 Bon 
+                        //h4=index
+                        if authorized
+                            form(action="/users/save", method="POST") 
+                                input(type="url", name="url" class="food-hidden" value=epi_list[index].url)
+                                input(type="text", name="title" class="food-hidden" value=epi_list[index].title)
+                                input(type="text", name="img" class="food-hidden" value=pics[randomInt()])
+                                button(class="form_button") Save recipe
+    
+                -}
+                if tasty_list.length < 5
+                    -var loop = tasty_list.length 
+                else 
+                    - var loop = 4
+                -for (let index = 0; index < loop; index++) {
+                    div(class="food_input-group flexi-food")
+                        h3.recipeTitle=tasty_list[index].title  
+                        img(src=pics[randomInt()] alt="recipe")
+                        a(target="_blank" class="link_food" href=tasty_list[index].url)
+                            button(class="button_light") OG link
+                        //h4 Tasty
+                        //h4=index
+                        if authorized
+                            form(action="/users/save", method="POST") 
+                                input(type="url", name="url" class="food-hidden" value=tasty_list[index].url)
+                                input(type="text", name="title" class="food-hidden" value=tasty_list[index].title)
+                                input(type="text", name="img" class="food-hidden" value=pics[randomInt()])
+                                button(class="form_button") Save recipe
+                -}
+                if jamie_list.length < 5
+                    -var loop = jamie_list.length 
+                else 
+                    - var loop = 4
+                -for (let index = 0; index < loop; index++) {
+                    div(class="food_input-group flexi-food")
+                        h3.recipeTitle=jamie_list[index].title  
+                        img(src=pics[randomInt()] alt="recipe")
+                        a(target="_blank" class="link_food" href=jamie_list[index].url)
+                            button(class="button_light") OG link
+                        //h4 Jamie
+                        //h4=index
+                        if authorized
+                            form(action="/users/save", method="POST") 
+                                input(type="url", name="url" class="food-hidden" value=jamie_list[index].url)
+                                input(type="text", name="title" class="food-hidden" value=jamie_list[index].title)
+                                input(type="text", name="img" class="food-hidden" value=pics[randomInt()])
+                                button(class="form_button") Save recipe
+                -}
+                if bbc_list.length < 5
+                    -var loop = bbc_list.length 
+                else 
+                    - var loop = 4
+                -for (let index = 0; index < loop; index++) {
+                    div(class="food_input-group flexi-food")
+                        h3.recipeTitle=bbc_list[index].title  
+                        img(src=pics[randomInt()] alt="recipe")
+                        a(target="_blank" class="link_food" href=bbc_list[index].url)
+                            button(class="button_light") OG link
+                        //h4 BBC
+                        //h4=index
+                        if authorized
+                            form(action="/users/save", method="POST") 
+                                input(type="url", name="url" class="food-hidden" value=bbc_list[index].url)
+                                input(type="text", name="title" class="food-hidden" value=bbc_list[index].title)
+                                input(type="text", name="img" class="food-hidden" value=pics[randomInt()])
+                                button(class="form_button") Save recipe
+                -}
+                if good_list.length < 5
+                    -var loop = good_list.length 
+                else 
+                    - var loop = 4
+                -for (let index = 0; index < loop; index++) {
+                    div(class="food_input-group flexi-food")
+                        h3.recipeTitle=good_list[index].title  
+                        img(src=pics[randomInt()] alt="recipe")
+                        a(target="_blank" class="link_food" href=good_list[index].url)
+                            button(class="button_light") OG link
+                        //h4 GOOD
+                        //h4=index
+                        if authorized
+                            form(action="/users/save", method="POST") 
+                                input(type="url", name="url" class="food-hidden" value=good_list[index].url)
+                                input(type="text", name="title" class="food-hidden" value=good_list[index].title)
+                                input(type="text", name="img" class="food-hidden" value=pics[randomInt()])
+                                button(class="form_button") Save recipe
+                -}
+            else
+                main(class="section")
+                    div(class="instructions")
+                        h1 Error, no recipes were found.
+    div(class="food_input-group loading")
+        h1 Loading...
+
+        
+

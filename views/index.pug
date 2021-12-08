@@ -1,0 +1,51 @@
+extends layout
+
+block content
+  div
+    form(action="/results" method="POST" id="foodSelect")
+      
+      div(class="food_input-group")
+        h3(class="food_heading") Diet
+        div(class="inner_food")
+          input(type="checkbox" class="food_checkbox" id="vegetarian" name="vegetarian" value=" vegetarian")
+          label(for="vegetarian") Vegetarian
+          br
+          input(type="checkbox" class="food_checkbox" id="vegan" name="vegan" value=" vegan")
+          label(for="vegan") Vegan
+          br
+          input(type="checkbox" class="food_checkbox" id="lactose" name="lactose" value=" lactose free")
+          label(for="lactose") Lactose free
+
+      div(class="food_input-group")
+        h3(class="food_heading") Main ingredients
+          input(type="text" class="food_input" id="ingredient" name='ingredient' autofocus placeholder="Search..." value=(undefined===ing_input ? '' : ing_input .ingredient))
+
+
+      div(class="food_input-group")
+        h3(class="food_heading") Cuisine
+        div(class="inner_food") 
+          input(type="radio" class="food_radio" id="italian" name="food_radio" value=" italian")
+          label(for="italian") Italian
+          br
+          input(type="radio" class="food_radio" id="asian" name="food_radio" value=" asian")
+          label(for="asian") Asian 
+          br
+          input(type="radio" class="food_radio" id="indian" name="food_radio" value=" indian")
+          label(for="indian") Indian 
+          br
+          input(type="radio" class="food_radio" id="mexican" name="food_radio" value=" mexican")
+          label(for="mexican") Mexican 
+          br
+          input(type="radio" class="food_radio" id="all_cuisine" name="food_radio" value="")
+          label(for="all_cuisine") Other/all cuisines 
+          
+      
+
+      div(class="food_input-group" id="foodbut")
+        button(class="form_button load_button" type="submit") View results
+  if errors
+    ul
+      for error in errors
+        li!= error.msg
+  div(class="food_input-group loading")
+    h1 Loading...

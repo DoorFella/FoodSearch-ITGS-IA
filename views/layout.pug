@@ -1,0 +1,51 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(name='author' content='Adam Klicka')
+    meta(name='description' content='FoodSearch provides an easy platform for searching and storing recipes.')
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    script(src="https://use.fontawesome.com/4f07cc5c5f.js")
+  body
+    div(class="Navbar")
+      div(class="Navbar__Link Navbar__Link-brand")
+        a(href="/" class="navLink") FoodSearch
+
+      div(class="Navbar__Link Navbar__Link-toggle")
+        i(class="fa fa-bars")
+
+      nav(class="Navbar__Items")
+        div(class="Navbar__Link")
+          a(href="/instructions/" class="navLink") Instructions
+
+      
+      if !authorized 
+        nav(class="Navbar__Items Navbar__Items--right")
+          div(class="Navbar__Link")
+            a(href="/users/register" class="navLink") Register
+
+        nav(class="Navbar__Items")
+          div(class="Navbar__Link")
+            a(href="/users/login" class="navLink") Log in
+
+
+      else 
+        nav(class="Navbar__Items Navbar__Items--right")
+          div(class="Navbar__Link")
+            a(href="/users/profile" class="navLink") Profile 
+
+        nav(class="Navbar__Items")
+          div(class="Navbar__Link")
+            a(href="/users/logout" class="navLink" method='POST') Log out
+
+        
+
+
+
+    block content
+
+  script(src="/javascripts/index.js")
+  script(src='/javascripts/pop-up.js')
+  script(src='/javascripts/loading.js')
