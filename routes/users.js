@@ -7,19 +7,14 @@ const passport = require('passport');
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   res.redirect('/');
-  console.log(req.session)
-  console.log(req.sessionID)
-  console.log(`user is ${req.user}`)
 });
 
 router.get('/profile', function(req, res,) {
-  console.log(req.session)
   User.findById(req.user._id, function(error, user) {
     if (error) {
       res.render('index', {title: 'FoodSearch', errors: error})
     } else {
       var userObj = user;
-      console.log(userObj)
       res.render('profile', {title: req.user.username + "'s profile", authorized: req.user, user_obj: userObj})
     }
   });
@@ -27,11 +22,7 @@ router.get('/profile', function(req, res,) {
 
 
 router.get('/register', (req, res) => {
-  res.render('register', {title: 'Register', authorized: req.user})
-  console.log(req.session)
-  console.log(req.sessionID)
-  console.log(`user is ${req.user}`)
-})
+  res.render('register', {title: 'Register', authorized: req.user})})
 
 router.post('/register', (req, res, next) => {
   User.register(new User({
@@ -60,10 +51,6 @@ router.post('/register', (req, res, next) => {
 });
 
 router.get('/login', (req, res) => {
-  
-  console.log(req.session)
-  console.log(req.sessionID)
-  console.log(`user is ${req.user}`)
   res.render('login', {title: 'Login',authorized: req.user})
 })
 
@@ -92,9 +79,6 @@ router.get('/logout', (req, res, next) => {
       } else {
         res.clearCookie('session-id');
         res.redirect('/')
-        console.log("logged out")
-        console.log(req.session)
-        console.log(req.user)
       }
     });
   } else {
@@ -107,14 +91,12 @@ router.get('/logout', (req, res, next) => {
 
 
 router.post('/save',(req, res, next) => {
-  console.log(req.body)
   var recipe = { title: req.body.title, url: req.body.url, img: req.body.img}
   User.findByIdAndUpdate(
      {_id: req.user._id},
      { $push: { recipes: recipe }}, 
      function (error) {
        if (error) {
-         console.log(error);
          res.status(204).send();
        } else {
          res.status(204).send();
@@ -131,7 +113,6 @@ router.post('/delete', (req, res, next) => {
     { $pull: { recipes: recipe}},
     function (error) {
       if (error) {
-        console.log(error);
         res.status(204).send();
       } else {
         res.redirect('/users/profile')

@@ -13,9 +13,6 @@ router.get('/', function(req, res, next) {
 
 router.get('/instructions', function(req, res, next) {
   res.render('instructions', {title: 'Instructions', authorized: req.user})
-  console.log(req.session)
-  console.log(req.sessionID)
-  console.log(`user is ${req.user}`)
 })
 /*
 router.post('/loading',[
