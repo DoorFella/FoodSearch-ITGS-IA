@@ -3,7 +3,7 @@ const puppeteer = require('puppeteer')
 async function BON(inputVal) {
     try {
         const URL = 'https://www.bonappetit.com/search'
-        const browser = await puppeteer.launch({headless: false,
+        const browser = await puppeteer.launch({headless: true,
          args: [`--window-size=1000,700`],
         defaultViewport: {
           width:1000,
