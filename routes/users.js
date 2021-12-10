@@ -55,7 +55,7 @@ router.get('/login', (req, res) => {
 
 
 
-router.post('/login',[], passport.authenticate('local'), (req, res) => {
+router.post('/login',[], passport.authenticate('local',{failureRedirect: '/users/login', }), (req, res) => {
   User.findOne({
     username: req.body.username
   }, (err, person) => {

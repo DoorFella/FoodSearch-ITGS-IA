@@ -1,5 +1,49 @@
 const puppeteer = require('puppeteer')
 
+async function BON(inputVal) {
+    try {
+        const URL = 'https://www.bonappetit.com/search'
+        const browser = await puppeteer.launch({headless: false,
+         args: [`--window-size=1000,700`],
+        defaultViewport: {
+          width:1000,
+          height:700
+        }})
+        const page = await browser.newPage()
+ 
+        await page.goto(URL)
+ 
+        await page.waitForSelector("#onetrust-button-group-parent");
+        await page.click("#onetrust-accept-btn-handler")
+ 
+        await page.type('input[name=terms]', inputVal,)
+        await page.click("button.submit")
+ 
+ 
+        await page.waitForSelector("h4 > a")
+        await page.waitFor(3000);
+ 
+        let data = await page.evaluate(() => {
+            let results = []
+            let items = document.querySelectorAll('article.recipe-content-card')
+            items.forEach((item) => {
+                results.push({
+                    url: item.querySelector('h4 > a').href,
+                    title: item.querySelector('h4 > a').innerText,
+                })
+            })
+            return results
+        })
+       // console.log('Bon')
+      //   console.log(data)
+        await browser.close()
+        return data
+    } catch (error) {
+        console.error(error)
+        return []
+    }
+    
+ }
 
  async function BBC(inputVal) {
     try {
@@ -106,6 +150,7 @@ const puppeteer = require('puppeteer')
 
 
 module.exports = {
+    BON,
     BBC,
     GOOD
 }

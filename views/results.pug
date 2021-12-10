@@ -51,8 +51,31 @@ block content
             
     div( id="foodReveal")
         div(id="foodPresent")
-            if bbc_list.length != 0 || good_list.length != 0
+            if bbc_list.length != 0 || good_list.length != 0 || epi_list.length != 0
                 
+                if epi_list.length < 5
+                    -var loop = epi_list.length 
+                else 
+                    - var loop = 4
+                -for (let index = 0; index < loop; index++) {
+                    div(class="food_input-group flexi-food")
+                        h3.recipeTitle=epi_list[index].title  
+                        img(src=pics[randomInt()] alt="recipe")
+                        a(target="_blank" class="link_food" href=epi_list[index].url)
+                            button(class="button_light") OG link
+                        //h4 Bon 
+                        //h4=index
+                        if authorized
+                            form(action="/users/save", method="POST") 
+                                input(type="url", name="url" class="food-hidden" value=epi_list[index].url)
+                                input(type="text", name="title" class="food-hidden" value=epi_list[index].title)
+                                input(type="text", name="img" class="food-hidden" value=pics[randomInt()])
+                                button(class="form_button") Save recipe
+    
+                -}
+                
+
+
                 if bbc_list.length < 5
                     -var loop = bbc_list.length 
                 else 
