@@ -21,7 +21,9 @@ router.get('/profile', function(req, res,) {
 
 
 router.get('/register', (req, res) => {
-  res.render('register', {title: 'Register', authorized: req.user})})
+  res.render('register', {title: 'Register', authorized: req.user})
+});
+
 
 router.post('/register', (req, res, next) => {
   User.register(new User({
@@ -49,13 +51,15 @@ router.post('/register', (req, res, next) => {
     })
 });
 
+
+
 router.get('/login', (req, res) => {
   res.render('login', {title: 'Login',authorized: req.user})
 })
 
 
 
-router.post('/login',[], passport.authenticate('local',{failureRedirect: '/users/login', }), (req, res) => {
+router.post('/login',[], passport.authenticate('local',{ failureRedirect: '/users/login' }), (req, res) => {
   User.findOne({
     username: req.body.username
   }, (err, person) => {
