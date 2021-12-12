@@ -29,7 +29,7 @@ router.get('/register', (req, res) => {
   if (req.user===undefined) {
     res.render('register', {title: 'Register', authorized: req.user})
   } else {
-    res.render('index', {title: 'FoodSearch'})
+    res.redirect('/', {title: 'FoodSearch'})
   }
   
 });
@@ -67,7 +67,7 @@ router.get('/login', (req, res) => {
   if (req.user===undefined) {
     res.render('login', {title: 'Login',authorized: req.user})
   } else {
-    res.render('index', {title: 'FoodSearch'})
+    res.redirect('/', {title: 'FoodSearch'})
   } 
 })
 

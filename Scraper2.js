@@ -146,9 +146,109 @@ async function BON(inputVal) {
     
  }
 
+ async function JAMIE(inputVal) {
+    try {
+        const URL = 'https://www.jamieoliver.com/'
+        const browser = await puppeteer.launch({headless: true,
+            args: [`--window-size=1200,700`],
+        defaultViewport: {
+          width:1200,
+          height:700
+        }})
+        const page = await browser.newPage()
+ 
+        await page.goto(URL)
+ 
+        //click accept cookies button
+        await page.waitForSelector("#ccc-button-holder");
+        await page.click("#ccc-recommended-settings")
+ 
+        await page.waitForSelector("li.site-search")
+        await page.click("li.site-search")
+        //search
+        await page.type('.typeahead.input_text.clear_search.tt-input', inputVal,)
+        await page.keyboard.press("Enter")
+ 
+        // wait for page to load
+        await page.waitForSelector("#search-isotope")
+
+ 
+        let data = await page.evaluate(() => {
+            let results = []
+            let items = document.querySelectorAll('.col-lg-3.col-sd-4.col-md-4.col-sm-4.col-xs-6.result.all.recipe')
+            items.forEach((item) => {
+                results.push({
+                    url: item.querySelector('a').href,
+                    title: item.querySelector('a').title,
+                })
+            })
+            return results
+        })
+     //   console.log('Jamie')
+      //  console.log(data)
+        await browser.close()
+        return data
+    } catch (error) {
+        console.error(error)
+        return []
+    }
+    
+ }
+
+ async function TESCO(inputVal) {
+    try {
+        const URL = 'https://realfood.tesco.com/'
+        const browser = await puppeteer.launch({headless: false,
+            args: [`--window-size=1200,700`],
+        defaultViewport: {
+          width:1200,
+          height:700
+        }})
+        const page = await browser.newPage()
+ 
+        await page.goto(URL)
+ 
+
+        await page.waitForSelector("#txtSearch");
+        await page.click("#txtSearch")
+ 
+        //search
+        await page.type('#txtSearch', inputVal,)
+        await page.keyboard.press("Enter")
+ 
+        // wait for page to load
+        await page.waitForSelector("ul.ddl-search-results")
+
+ 
+        let data = await page.evaluate(() => {
+            let results = []
+            let items = document.querySelectorAll('a.ddl-search-results__item-link')
+            items.forEach((item) => {
+                results.push({
+                    url: item.href,
+                    title: item.querySelector('div > h2.ddl-search-results__item-heading').innerText,
+                })
+            })
+            return results
+        })
+     //   console.log('Jamie')
+      //  console.log(data)
+        await browser.close()
+        return data
+    } catch (error) {
+        console.error(error)
+        return []
+    }
+    
+ }
+
+
+
 
 module.exports = {
     BON,
     BBC,
-    GOOD
+    GOOD,
+    JAMIE,
+    TESCO
 }

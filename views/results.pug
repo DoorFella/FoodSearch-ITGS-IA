@@ -51,7 +51,7 @@ block content
             
     div( id="foodReveal")
         div(id="foodPresent")
-            if bbc_list.length != 0 || good_list.length != 0 || epi_list.length != 0
+            if bbc_list.length != 0 || good_list.length != 0 || epi_list.length != 0 || jamie_list.length != 0 || tesco_list.length != 0
                 
                 if epi_list.length < 5
                     -var loop = epi_list.length 
@@ -114,6 +114,51 @@ block content
                                 input(type="text", name="img" class="food-hidden" value=pics[randomInt()])
                                 button(class="form_button") Save recipe
                 -}
+
+                if jamie_list.length < 5
+                    -var loop = jamie_list.length 
+                else 
+                    - var loop = 4
+                -for (let index = 0; index < loop; index++) {
+                    div(class="food_input-group flexi-food")
+                        h3.recipeTitle=jamie_list[index].title  
+                        img(src=pics[randomInt()] alt="recipe")
+                        a(target="_blank" class="link_food" href=jamie_list[index].url)
+                            button(class="button_light") Original link
+                        //h4 GOOD
+                        //h4=index
+                        if authorized
+                            form(action="/users/save", method="POST") 
+                                input(type="url", name="url" class="food-hidden" value=jamie_list[index].url)
+                                input(type="text", name="title" class="food-hidden" value=jamie_list[index].title)
+                                input(type="text", name="img" class="food-hidden" value=pics[randomInt()])
+                                button(class="form_button") Save recipe
+                -}
+
+
+                if tesco_list.length < 5
+                    -var loop = tesco_list.length 
+                else 
+                    - var loop = 4
+                -for (let index = 0; index < loop; index++) {
+                    div(class="food_input-group flexi-food")
+                        h3.recipeTitle=tesco_list[index].title  
+                        img(src=pics[randomInt()] alt="recipe")
+                        a(target="_blank" class="link_food" href=tesco_list[index].url)
+                            button(class="button_light") Original link
+                        //h4 GOOD
+                        //h4=index
+                        if authorized
+                            form(action="/users/save", method="POST") 
+                                input(type="url", name="url" class="food-hidden" value=tesco_list[index].url)
+                                input(type="text", name="title" class="food-hidden" value=tesco_list[index].title)
+                                input(type="text", name="img" class="food-hidden" value=pics[randomInt()])
+                                button(class="form_button") Save recipe
+                -}
+
+
+
+
             else
                 main(class="section")
                     div(class="instructions")
