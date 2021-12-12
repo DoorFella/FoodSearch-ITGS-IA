@@ -1,5 +1,5 @@
 const puppeteer = require('puppeteer')
-
+/*
 async function BON(inputVal) {
     try {
         const URL = 'https://www.bonappetit.com/search'
@@ -44,8 +44,8 @@ async function BON(inputVal) {
     }
     
  }
-
- async function BBC(inputVal) {
+*/
+async function BBC(inputVal) {
     try {
         const URL = 'https://www.bbc.co.uk/food'
         const browser = await puppeteer.launch({headless: true,
@@ -92,11 +92,11 @@ async function BON(inputVal) {
         return []
     }
     
- }
+}
 
 
 //BBC good food
- async function GOOD(inputVal) {
+async function GOOD(inputVal) {
     try {
         const URL = 'https://www.bbcgoodfood.com/'
         const browser = await puppeteer.launch({headless: true,
@@ -144,9 +144,9 @@ async function BON(inputVal) {
         return []
     }
     
- }
+}
 
- async function JAMIE(inputVal) {
+async function JAMIE(inputVal) {
     try {
         const URL = 'https://www.jamieoliver.com/'
         const browser = await puppeteer.launch({headless: true,
@@ -193,12 +193,12 @@ async function BON(inputVal) {
         return []
     }
     
- }
+}
 
- async function TESCO(inputVal) {
+async function TESCO(inputVal) {
     try {
         const URL = 'https://realfood.tesco.com/'
-        const browser = await puppeteer.launch({headless: false,
+        const browser = await puppeteer.launch({headless: true,
             args: [`--window-size=1200,700`],
         defaultViewport: {
           width:1200,
@@ -240,13 +240,13 @@ async function BON(inputVal) {
         return []
     }
     
- }
+}
 
 
 
 
 module.exports = {
-    BON,
+   // BON,
     BBC,
     GOOD,
     JAMIE,
