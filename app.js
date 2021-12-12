@@ -38,7 +38,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(session({
   name: 'session-id',
-  secret: '123-456-789',
+  secret: '1ashf;k45has;ldkf89hklas#sdhe*asfli',
   saveUninitialized: false,
   resave: false
 }));

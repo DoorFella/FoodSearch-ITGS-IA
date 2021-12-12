@@ -95,7 +95,7 @@ async function BON(inputVal) {
  }
 
 
-
+//BBC good food
  async function GOOD(inputVal) {
     try {
         const URL = 'https://www.bbcgoodfood.com/'
@@ -114,10 +114,8 @@ async function BON(inputVal) {
         await page.waitForSelector(".css-1x23ujx");
         await page.click(".css-1x23ujx")
 
-
+        //wait for page to load
         await page.waitForSelector("#branded-section-search-input");
-
-        
         //search
         await page.type('#branded-section-search-input', inputVal,)
         await page.keyboard.press("Enter")

@@ -9,19 +9,29 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/profile', function(req, res,) {
-  User.findById(req.user._id, function(error, user) {
-    if (error) {
-      res.render('index', {title: 'FoodSearch', errors: error})
-    } else {
-      var userObj = user;
-      res.render('profile', {title: req.user.username + "'s profile", authorized: req.user, user_obj: userObj})
-    }
-  });
+  if (req.user===undefined) {
+    res.render('login', {title: 'FoodSearch - Login'})
+  } else {
+    User.findById(req.user._id, function(error, user) {
+      if (error) {
+        res.render('index', {title: 'FoodSearch', errors: error})
+      } else {
+        var userObj = user;
+        res.render('profile', {title: req.user.username + "'s profile", authorized: req.user, user_obj: userObj})
+      }
+    });
+  }
+  
 });
 
 
 router.get('/register', (req, res) => {
-  res.render('register', {title: 'Register', authorized: req.user})
+  if (req.user===undefined) {
+    res.render('register', {title: 'Register', authorized: req.user})
+  } else {
+    res.render('index', {title: 'FoodSearch'})
+  }
+  
 });
 
 
@@ -54,12 +64,17 @@ router.post('/register', (req, res, next) => {
 
 
 router.get('/login', (req, res) => {
-  res.render('login', {title: 'Login',authorized: req.user})
+  if (req.user===undefined) {
+    res.render('login', {title: 'Login',authorized: req.user})
+  } else {
+    res.render('index', {title: 'FoodSearch'})
+  } 
 })
 
 
 
-router.post('/login',[], passport.authenticate('local',{ failureRedirect: '/users/login' }), (req, res) => {
+router.post('/login',[], passport.authenticate('local',{ failureRedirect: '/users/login'}),
+ (req, res) => {
   User.findOne({
     username: req.body.username
   }, (err, person) => {
@@ -84,11 +99,9 @@ router.get('/logout', (req, res, next) => {
         res.redirect('/')
       }
     });
-  } else {
-    res.redirect('/login')
-    var err = new Error('You are not logged in!');
-    err.status = 403;
-    next(err);
+  } 
+  else {
+    res.redirect('/users/login')
   }
 });
 

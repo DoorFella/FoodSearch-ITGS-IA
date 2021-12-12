@@ -44,12 +44,12 @@ router.post('/results',[
     if (req.body.ingredient != undefined) {
         diet = diet + ' ' + req.body.ingredient
     }
-  
-    var scraper_input = await String(diet);
 
-          //perform foodScraper
-      
-    let [list_BON, /*list_JAMIE*/ list_BBC, list_GOOD] = await Promise.all([foodScraper.BON(scraper_input), /*foodScraper.JAMIE(scraper_input),*/ foodScraper.BBC(scraper_input), foodScraper.GOOD(scraper_input)])
+    let scraper_input = diet;
+    console.log(scraper_input)
+
+    //perform foodScraper
+    let [list_BON, /* list_JAMIE, list_OLIVE, */ list_BBC, list_GOOD] = await Promise.all([foodScraper.BON(scraper_input), /*foodScraper.JAMIE(scraper_input),*/ foodScraper.BBC(scraper_input), foodScraper.GOOD(scraper_input)])
    
      
     await res.render('results', {title: 'FoodSearch - Results', epi_list: list_BON,/* tasty_list: list_TASTY, jamie_list: list_JAMIE,*/ bbc_list: list_BBC, good_list: list_GOOD, authorized: req.user});

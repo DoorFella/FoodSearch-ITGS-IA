@@ -12,7 +12,7 @@ block content
                         h3=recipe.title  
                         img(src=recipe.img alt="recipe")
                         a(target="_blank" class="link_food" href=recipe.url)
-                            button(class="button_light") OG link
+                            button(class="button_light") Original link
                         form(action="/users/delete", method="post") 
                             input(type="url", name="url" class="food-hidden" value=recipe.url)
                             input(type="text", name="title" class="food-hidden" value=recipe.title)

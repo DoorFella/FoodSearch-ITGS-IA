@@ -23,7 +23,7 @@ body {
 
 .Navbar {
   background-color: var(--color-secondary);
-  display: flex;
+  display: flex; 
   padding: 16px;
   font-family: sans-serif;
   color: white;
@@ -103,8 +103,6 @@ transform: scale(0.98);
   --color-primary-dark: #522885;
   --color-primary-light: #8b4ed4;
   --color-secondary: #353535;
-  --color-error: #cc3333;
-  --color-success: #4bb544;
   --border-radius: 8px;
   font-size: 18px;
   font-family: 'Montserrat', sans-serif;
@@ -287,10 +285,9 @@ flex-direction: column;
 #foodSelect,
 #foodPresent {
   justify-content: center;
-  display: flex;
+  display: flex; 
   flex-wrap: wrap;
   margin-top: 1rem;
-
 }
 
 #ingredient {
